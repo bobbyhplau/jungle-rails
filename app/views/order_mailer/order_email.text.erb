@@ -1,0 +1,14 @@
+Thank you for shopping at jungle.com,
+<%= @user.first_name %>
+<%= @user.last_name %>
+===============================================
+You have successfully bought the following items:
+<% @line_items.each do |item| %>
+<%= item.quantity %> x
+<%= Product.find(item[:product_id]).name %>
+<% end %>
+----------------------------------------
+The total comes out to
+<%= @order.total_cents / 100.0 %>.
+You can find your order at http://localhost:3000/orders/
+<%= @order.id  %>

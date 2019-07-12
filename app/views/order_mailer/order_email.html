@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+    <h2>Thank for shopping at jungle.com,
+        <%= @user.first_name %>
+        <%= @user.last_name %>
+    </h2>
+    <p>
+        You have successfully bought the following items:<br>
+    </p>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        <% @line_items.each do |item| %>
+        <tr>
+            <td>
+                <%= Product.find(item[:product_id]).name %>
+            </td>
+            <td>
+                <%= item.quantity %>
+            </td>
+            <td>
+                <%= item.total_price_cents / 100.0 %>
+            </td>
+        </tr>
+        <% end %>
+        <tr>
+            <td><b>Total:</b></td>
+            <td></td>
+            <td>
+                <%= @order.total_cents / 100.0 %>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <p>You can find your order <a href="http://localhost:3000/orders/<%= @order.id %>">here</a>.</p>
+</body>
+
+</html>
