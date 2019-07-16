@@ -1,11 +1,32 @@
 <section class="products-index">
-
-  <header class="page-header">
-    <h1>Products</h1>
-  </header>
-
-  <div class="products">
-    <%= render @products %>
-  </div>
-
+    <header class="page-header">
+        <h1>Products</h1>
+    </header>
+    <% def printStars (rating) %>
+    <% counter = 1 %>
+    <% while counter <= rating do %>
+    <% puts rating %>
+    <span class="goodstars">
+        <%= fa_icon "star" %> </span>
+    <% counter += 1 %>
+    <% end %>
+    <% while counter <= 5 do %>
+    <span class="badstars">
+        <%= fa_icon "star" %> </span>
+    <% counter += 1 %>
+    <% end %>
+    <% end %>
+    <% def averageReviews (reviews) %>
+    <% if reviews.length == 0 %>
+    <% return 0 %>
+    <% end %>
+    <% beginVar = 0 %>
+    <% reviews.each do |review| %>
+    <% beginVar += review.rating %>
+    <% end %>
+    <% return beginVar /= reviews.length %>
+    <% end %>
+    <div class="products">
+        <%= render @products %>
+    </div>
 </section>

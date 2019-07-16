@@ -1,0 +1,14 @@
+<div class="review">
+    <p>
+        <%= printStars(review.rating) %>
+    </p>
+    <p class="mt-0 mb-1">
+        <%= "#{User.find(review.user_id).first_name} #{User.find(review.user_id).last_name}"%>
+    </p>
+    <%= review.description %>
+    <br>
+    <br>
+    <% if current_user.id == review.user_id%>
+    <%= link_to "Delete Review", product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+</div>

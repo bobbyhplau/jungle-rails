@@ -8,6 +8,10 @@
         <% end %>
     </header>
     <p class="description">
+        <% ratings = Review.where({product_id: product.id}) %>
+        <% printStars(averageReviews(ratings)) %>
+        <br>
+        <br>
         <%= product.description %>
     </p>
     <footer class="actions">

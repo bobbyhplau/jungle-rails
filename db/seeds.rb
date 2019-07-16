@@ -132,5 +132,30 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Creating Sample Reviews ..."
+
+User.create!({
+  first_name: "Test",
+  last_name: "User",
+  email: "test@test.com",
+  password_digest: "$2a$10$NmI7CGaQ0gy6y/eXaKdxuejU.M2JgeYgFZxH66Ii8GYd7r/KkZviy"
+})
+
+pro1 = Product.find_or_create_by! name: 'Red Bookshelf'
+pro2 = Product.find_or_create_by! name: 'Electric Chair'
+
+pro1.review.create!({
+  product_id: 12,
+  user_id: 1,
+  description: "Great product, would buy again... if they had stock!",
+  rating: 5
+})
+
+pro2.review.create!({
+  product_id: 11,
+  user_id: 1,
+  description: "What a terrible chair... it hurts me to sit on it.",
+  rating: 1
+})
 
 puts "DONE!"
